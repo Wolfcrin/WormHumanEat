@@ -1,0 +1,834 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>worm_kill</name>
+    <description>El gusano enojado porque pasa gente por su camino.</description>
+    <version>1.0.0.0</version>
+    <author>Carmelo Puglieso</author>
+    <author-email></author-email>
+    <author-website>http://</author-website>
+    <app-id>com.godguara.worms</app-id>
+    <unique-id>u0hzfr244ugm</unique-id>
+    <saved-with-version>24100</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Button" version="1">Button</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="LocalStorage" version="1">Local storage</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
+        <plugin author="Rex.Rainbow" id="Rex_Nickname" version="0.100000001">Nickname</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+        <plugin author="Scirra" id="Tilemap" version="1">Tilemap</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
+        <plugin author="Scirra" id="progressbar" version="1">Progress bar</plugin>
+        <plugin author="SirG" id="sirg_notifications" version="1.299999952">Notifications</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="LOS" version="1">Line Of Sight</behavior>
+        <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
+        <behavior author="Rex.Rainbow" id="Rex_bNickname" version="1">Nickname</behavior>
+        <behavior author="Rex.Rainbow" id="Rex_pin2imgpt" version="1">Pin to image point</behavior>
+        <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
+        <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
+        <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
+        <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>800</width>
+        <height>480</height>
+    </window-size>
+    <pixel-rounding>1</pixel-rounding>
+    <preview-effects>1</preview-effects>
+    <first-layout>Menu</first-layout>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">No</prop>
+        <prop name="Downscaling">Medium quality</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Orientations">Landscape</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D asm.js</prop>
+        <prop name="Preload sounds">Yes</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Point</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder>
+        <object-folder name="Funcionales">
+            <object-type global="1" name="Array" sid="102204452163472">
+                <plugin id="Arr" />
+            </object-type>
+            <object-type name="Audio" sid="623514063355121">
+                <plugin id="Audio" />
+            </object-type>
+            <object-type name="Function" sid="193540333462514">
+                <plugin id="Function" />
+            </object-type>
+        </object-folder>
+        <object-folder name="UID">
+            <object-folder name="Sprite_fonts">
+                <object-type name="sfCantidadCombo" sid="491313414730133">
+                    <plugin id="Spritefont2" />
+                    <texture />
+                </object-type>
+                <object-type name="sfHuman_Puntos" sid="799841657213067">
+                    <plugin id="Spritefont2" />
+                    <texture original-source="C:\Users\carmelo\Desktop\human_puntos21x22.png" />
+                </object-type>
+                <object-type name="sfImagenCombo" sid="284009229354786">
+                    <plugin id="Spritefont2" />
+                    <texture original-source="C:\Users\carmelo\Desktop\SpriteFont\combos_49x49.png" />
+                </object-type>
+                <object-type name="sfMaxCombo" sid="787865742282163">
+                    <plugin id="Spritefont2" />
+                    <texture />
+                </object-type>
+                <object-type name="sfPuntos" sid="123824455701750">
+                    <plugin id="Spritefont2" />
+                    <texture original-source="C:\Users\carmelo\Desktop\SpriteFont_Aharoni_Negrita_(36)_[0,0,0,0]_15x20.png" />
+                </object-type>
+                <object-type name="sfTiempoCombo" sid="569923725204095">
+                    <plugin id="Spritefont2" />
+                    <texture />
+                </object-type>
+                <object-type name="titulos" sid="170139607712528">
+                    <plugin id="Spritefont2" />
+                    <texture />
+                </object-type>
+            </object-folder>
+            <object-folder name="Mobil">
+                <object-type name="iza_touc" sid="851427482523869">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="629986261077626" speed="5">
+                            <frame duration="1" hotspotX="0.59375" hotspotY="0.4375" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="disparo" sid="272494008284372">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="132094830083699" speed="5">
+                            <frame duration="1" hotspotX="0.59375" hotspotY="0.4375" original-source="C:\Users\carmelo\Desktop\Nuevos Ejemplos COnstruct 2 2017\platformer-assets\Control\transparentDark\transparentDark47.png" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="touc_disparo" sid="292028305392076">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="554138889699055" speed="0">
+                            <frame duration="1" hotspotX="0.6" hotspotY="0.4375" original-source="C:\Users\carmelo\Desktop\Nuevos Ejemplos COnstruct 2 2017\platformer-assets\Control\transparentDark\transparentDark46.png">
+                                <collision-poly>
+                                    <point x="0.15" y="0.15" />
+                                    <point x="0.5" y="0.0125" />
+                                    <point x="0.85" y="0.15" />
+                                    <point x="1" y="0.5" />
+                                    <point x="0.85" y="0.85" />
+                                    <point x="0.5" y="1" />
+                                    <point x="0.15" y="0.85" />
+                                    <point x="0" y="0.5" />
+                                </collision-poly>
+                            </frame>
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\carmelo\Desktop\Nuevos Ejemplos COnstruct 2 2017\platformer-assets\Control\transparentDark\transparentDark47.png" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+            </object-folder>
+            <object-type name="Control_Combos" sid="175243390347212">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Timer" sid="669192524649730">
+                        <behavior id="Timer" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="971350239413667" speed="5">
+                        <frame duration="1" hotspotX="0.609375" hotspotY="0.416667" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Fondo_Puntaje" sid="683984778308299">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="557495023760665" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Icono_Humano" sid="782097637712074">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="puntos" sid="162482509845427" type="number" />
+                    <instance-variable name="Animation" sid="203353220623944" type="string" />
+                </instance-variables>
+                <animation-folder>
+                    <animation framecount="2" loop="1" name="Human_1" pingpong="0" repeatcount="1" repeatto="0" sid="903543844540739" speed="5">
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_2" pingpong="0" repeatcount="1" repeatto="0" sid="498108745563565" speed="5">
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_3" pingpong="0" repeatcount="1" repeatto="0" sid="583761423445657" speed="5">
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_4" pingpong="0" repeatcount="1" repeatto="0" sid="698347656990529" speed="5">
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_Perro" pingpong="0" repeatcount="1" repeatto="0" sid="581752856650669" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                            <collision-poly>
+                                <point x="0.0625" y="0.3125" />
+                                <point x="1" y="0" />
+                                <point x="0.854167" y="0.96875" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                            <collision-poly>
+                                <point x="0" y="0.375" />
+                                <point x="1" y="0" />
+                                <point x="0.875" y="1" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_Caballo" pingpong="0" repeatcount="1" repeatto="0" sid="329865271579211" speed="5">
+                        <frame duration="1" hotspotX="0.505263" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.505263" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="human_Puntos" sid="798918026147849">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Keyboard" sid="478871593433666">
+                <plugin id="Keyboard" />
+            </object-type>
+            <object-type name="limites_mapa" sid="737677962980244">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="474938876952445" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="LocalStorage" sid="155210054375669">
+                <plugin id="LocalStorage" />
+            </object-type>
+            <object-type name="Nickname" sid="902398427572633">
+                <plugin id="Rex_Nickname" />
+            </object-type>
+            <object-type name="Notifications" sid="969519679473238">
+                <plugin id="sirg_notifications" />
+            </object-type>
+            <object-type name="ProgressBar" sid="504846954325129">
+                <plugin id="progressbar" />
+            </object-type>
+            <object-type global="1" name="puntaje" sid="640381713172656">
+                <plugin id="Arr" />
+            </object-type>
+            <object-type name="Button" sid="196134989044726">
+                <plugin id="Button" />
+            </object-type>
+            <object-type name="Puntajes" sid="231398454681299">
+                <plugin id="Button" />
+            </object-type>
+            <object-type name="Reiniciar" sid="247617425059269">
+                <plugin id="Button" />
+            </object-type>
+            <object-type name="SOnidos" sid="948823074685807">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="sonido_a_reproducir" sid="541492324901088" type="string" />
+                </instance-variables>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="978473969743593" speed="5">
+                        <frame duration="1" hotspotX="0.504065" hotspotY="0.504065" original-source="C:\Users\carmelo\Desktop\images.jpg" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="textNombre_Audio" sid="981842035683761">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Tiempo" sid="826688042996979">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="889603420635353" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Touch" sid="273880881034658">
+                <plugin id="Touch" />
+            </object-type>
+            <object-type name="txtFinHumanDevorados" sid="460728963276666">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="txtFinMaxCombo" sid="710463427391528">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="txtfinPuntaje" sid="839664904723772">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="txtJugar" sid="594995499208099">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="txtPerdiste" sid="839104625048078">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="txtTitlesFin" sid="632997041442617">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Sprite" sid="743170651363875">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="892352639380135" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="Niveles">
+            <object-type name="fondo_tierra" sid="495543355698131">
+                <plugin id="TiledBg" />
+                <texture />
+            </object-type>
+            <object-type name="Tilemap" sid="680887366307584">
+                <plugin id="Tilemap" />
+                <texture />
+                <tiles />
+            </object-type>
+        </object-folder>
+        <object-folder name="Enemigos">
+            <object-folder name="Objetos_varios">
+                <object-type name="Asustado" sid="870005855137576">
+                    <plugin id="Sprite" />
+                    <instance-variables>
+                        <instance-variable name="uid_padre" sid="567105110058850" type="number" />
+                    </instance-variables>
+                    <behaviors>
+                        <behavior-type name="PinToImagePoint" sid="558549181793330">
+                            <behavior id="Rex_pin2imgpt" />
+                        </behavior-type>
+                    </behaviors>
+                    <animation-folder>
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="533402240973136" speed="5">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.9375" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="particles_mina" sid="409002780598073">
+                    <plugin id="Particles" />
+                    <texture />
+                </object-type>
+                <object-type name="sangre" sid="846358570057166">
+                    <plugin id="Particles" />
+                    <texture />
+                </object-type>
+            </object-folder>
+            <object-type name="Human" sid="217146953238939">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="puntos" sid="930575583536067" type="number" />
+                    <instance-variable name="Animation" sid="656225572348526" type="string" />
+                    <instance-variable name="cantidaPaCombo" sid="496889736592227" type="number" />
+                </instance-variables>
+                <animation-folder>
+                    <animation framecount="2" loop="1" name="Human_1" pingpong="0" repeatcount="1" repeatto="0" sid="499004216599580" speed="5">
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_2" pingpong="0" repeatcount="1" repeatto="0" sid="477689375122449" speed="5">
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_3" pingpong="0" repeatcount="1" repeatto="0" sid="370908885208283" speed="5">
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_4" pingpong="0" repeatcount="1" repeatto="0" sid="917233908655190" speed="5">
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_Perro" pingpong="0" repeatcount="1" repeatto="0" sid="310774043917471" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                            <collision-poly>
+                                <point x="0.0625" y="0.3125" />
+                                <point x="1" y="0" />
+                                <point x="0.854167" y="0.96875" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                            <collision-poly>
+                                <point x="0" y="0.375" />
+                                <point x="1" y="0" />
+                                <point x="0.875" y="1" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_Caballo" pingpong="0" repeatcount="1" repeatto="0" sid="759458391327614" speed="5">
+                        <frame duration="1" hotspotX="0.505263" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.505263" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="Human_Pistol" pingpong="0" repeatcount="1" repeatto="0" sid="584789572184837" speed="5">
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                            <image-point name="disparo" x="0.8125" y="0.625" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.4375" hotspotY="0.5">
+                            <image-point name="puntos" x="0" y="0" />
+                            <image-point name="disparo" x="0.8125" y="0.625" />
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="mina" sid="916253194272886">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="648613426925697" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="Objetos_Varios">
+            <object-type name="Oro" sid="346361696690995">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="772929192447931" speed="5">
+                        <frame duration="1" hotspotX="0.461538" hotspotY="0.521739" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="Gusanito">
+            <object-type name="gusanito" sid="334514848767344">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="puntos" sid="189702211664773" type="number" />
+                    <instance-variable name="combo_timer" sid="765583115699062" type="number" />
+                    <instance-variable name="cantidad_combo" sid="240633639681222" type="number" />
+                    <instance-variable name="vida" sid="359534948329484" type="number" />
+                    <instance-variable name="humano_comidos" sid="373902564675475" type="number" />
+                    <instance-variable name="plus_velocidad" sid="393156475488433" type="number" />
+                    <instance-variable name="Habilidad" sid="210897148751017" type="string" />
+                    <instance-variable name="skin" sid="904840036714814" type="string" />
+                    <instance-variable name="Skin_Estado" sid="857452487618090" type="string" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="ScrollTo" sid="866135866249769">
+                        <behavior id="scrollto" />
+                    </behavior-type>
+                    <behavior-type name="Bullet" sid="655619611932078">
+                        <behavior id="Bullet" />
+                    </behavior-type>
+                    <behavior-type name="BoundToLayout" sid="567955241268327">
+                        <behavior id="bound" />
+                    </behavior-type>
+                    <behavior-type name="Timer" sid="934178672802198">
+                        <behavior id="Timer" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="3" loop="1" name="Comun" pingpong="0" repeatcount="1" repeatto="0" sid="266703172226919" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Imagepoint 1" x="0" y="0.53125" />
+                            <collision-poly>
+                                <point x="0" y="0.0625" />
+                                <point x="0.765625" y="0.078125" />
+                                <point x="0.125" y="0.546875" />
+                                <point x="0.8125" y="0.984375" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Imagepoint 1" x="0" y="0.53125" />
+                            <collision-poly>
+                                <point x="0" y="0.15625" />
+                                <point x="0.421875" y="0.09375" />
+                                <point x="0.898438" y="0.265625" />
+                                <point x="0.9375" y="0.75" />
+                                <point x="0.015625" y="1" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Imagepoint 1" x="0" y="0.53125" />
+                            <collision-poly>
+                                <point x="0" y="0.09375" />
+                                <point x="0.90625" y="0.28125" />
+                                <point x="0.859375" y="0.78125" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="3" loop="1" name="LLenoDeIra" pingpong="0" repeatcount="1" repeatto="0" sid="279141737530442" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0" y="0.15625" />
+                                <point x="0.421875" y="0.09375" />
+                                <point x="0.898438" y="0.265625" />
+                                <point x="0.9375" y="0.75" />
+                                <point x="0.015625" y="1" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0" y="0.09375" />
+                                <point x="0.90625" y="0.28125" />
+                                <point x="0.859375" y="0.78125" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0" y="0.0625" />
+                                <point x="0.765625" y="0.078125" />
+                                <point x="0.125" y="0.546875" />
+                                <point x="0.8125" y="0.984375" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="3" loop="1" name="Esqueleto" pingpong="0" repeatcount="1" repeatto="0" sid="654540529402378" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0" y="0.15625" />
+                                <point x="0.421875" y="0.09375" />
+                                <point x="0.898438" y="0.265625" />
+                                <point x="0.9375" y="0.75" />
+                                <point x="0.015625" y="1" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0" y="0.09375" />
+                                <point x="0.90625" y="0.28125" />
+                                <point x="0.859375" y="0.78125" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0" y="0.0625" />
+                                <point x="0.765625" y="0.078125" />
+                                <point x="0.125" y="0.546875" />
+                                <point x="0.8125" y="0.984375" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="gusanito_cuerpo" sid="646958609480137">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin" sid="140495686378725">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Comun" pingpong="0" repeatcount="1" repeatto="0" sid="671951567070181" speed="0">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\carmelo\Desktop\Nuevos Ejemplos COnstruct 2 2017\platformer-assets\Control\transparentDark\transparentDark09.png">
+                            <collision-poly>
+                                <point x="0.0153846" y="0" />
+                                <point x="0.953846" y="0.224138" />
+                                <point x="0.907692" y="0.775862" />
+                                <point x="0.0153846" y="1" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="LLenoDeIra" pingpong="0" repeatcount="1" repeatto="0" sid="313244352437520" speed="0">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\carmelo\Desktop\Nuevos Ejemplos COnstruct 2 2017\platformer-assets\Control\transparentDark\transparentDark09.png">
+                            <collision-poly>
+                                <point x="0.0769231" y="0.0862069" />
+                                <point x="0.492308" y="0.0517241" />
+                                <point x="0.830769" y="0.189655" />
+                                <point x="0.969231" y="0.5" />
+                                <point x="0.830769" y="0.810345" />
+                                <point x="0.492308" y="0.931035" />
+                                <point x="0.0769231" y="0.913793" />
+                                <point x="0.0153846" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Esqueleto" pingpong="0" repeatcount="1" repeatto="0" sid="366535713797982" speed="0">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\carmelo\Desktop\Nuevos Ejemplos COnstruct 2 2017\platformer-assets\Control\transparentDark\transparentDark09.png">
+                            <collision-poly>
+                                <point x="0.0769231" y="0.0862069" />
+                                <point x="0.492308" y="0.0517241" />
+                                <point x="0.830769" y="0.189655" />
+                                <point x="0.969231" y="0.5" />
+                                <point x="0.830769" y="0.810345" />
+                                <point x="0.492308" y="0.931035" />
+                                <point x="0.0769231" y="0.913793" />
+                                <point x="0.0153846" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="particles_rocas" sid="917385337807877">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+        </object-folder>
+        <object-folder name="Disparos">
+            <object-type name="acido" sid="883024396747237">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="187119262234171" speed="5">
+                        <frame duration="1" hotspotX="0.0625" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="0" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="rifle" sid="220477328526458">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="766121812140133" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="Habilidades">
+            <object-type name="escudo" sid="863179177459418">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+        </object-folder>
+        <object-type name="Tilemap2" sid="606656381816754">
+            <plugin id="Tilemap" />
+            <texture original-source="D:\construct 2 utiles\nNkz34y.png" />
+            <tiles>
+                <tile id="0">
+                    <collision-poly>
+                        <point x="0.484375" y="0.773438" />
+                        <point x="0.675781" y="1" />
+                        <point x="0.335938" y="0.992188" />
+                    </collision-poly>
+                </tile>
+                <tile id="5">
+                    <collision-poly>
+                        <point x="0.105469" y="0.546875" />
+                        <point x="0.921875" y="0.546875" />
+                        <point x="0.867188" y="0.898438" />
+                        <point x="0.0859375" y="0.886719" />
+                    </collision-poly>
+                </tile>
+                <tile id="7">
+                    <collision-poly>
+                        <point x="0.171875" y="0.558594" />
+                        <point x="0.808594" y="0.554688" />
+                        <point x="0.820313" y="0.957031" />
+                        <point x="0.175781" y="0.957031" />
+                    </collision-poly>
+                </tile>
+                <tile id="8">
+                    <collision-poly>
+                        <point x="0.125" y="0.734375" />
+                        <point x="0.683594" y="0.65625" />
+                        <point x="0.875" y="0.960938" />
+                        <point x="0.0625" y="0.960938" />
+                    </collision-poly>
+                </tile>
+            </tiles>
+        </object-type>
+        <object-type name="MusicaOnOFF" sid="476390492875671">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="786813961145421" speed="0">
+                    <frame duration="1" hotspotX="0.570423" hotspotY="0.411765" />
+                    <frame duration="1" hotspotX="0.570423" hotspotY="0.411765" />
+                </animation>
+            </animation-folder>
+        </object-type>
+    </object-folder>
+    <families>
+        <family name="fHuman" plugin-id="Sprite" sid="864014910045128">
+            <members>
+                <member>Human</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="disparando" sid="875365517709390" type="boolean" />
+                <instance-variable name="asustado" sid="181040021766016" type="boolean" />
+                <instance-variable name="fPuntos" sid="327476070112077" type="number" />
+                <instance-variable name="fCantidadPaCombo" sid="672534522898565" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="LineOfSight" sid="169065000684515">
+                    <behavior id="LOS" />
+                </behavior-type>
+            </behaviors>
+        </family>
+        <family name="proyectiles" plugin-id="Sprite" sid="207383863669601">
+            <members>
+                <member>acido</member>
+                <member>rifle</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="destruirAlChocarConTile" sid="996898066136241" type="boolean" />
+                <instance-variable name="danio" sid="796181673836766" type="number" />
+                <instance-variable name="UID_Padre" sid="162472705977964" type="number" />
+                <instance-variable name="enemy" sid="776312284082013" type="boolean" />
+                <instance-variable comment="la distancia que recorre el disparo antes de desaparecer" name="distanciaVida" sid="713322571210161" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="DestroyOutsideLayout" sid="508057439599812">
+                    <behavior id="destroy" />
+                </behavior-type>
+                <behavior-type name="Nickname" sid="233705564025399">
+                    <behavior id="Rex_bNickname" />
+                </behavior-type>
+                <behavior-type name="Bullet" sid="986194141967787">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+        </family>
+    </families>
+    <layout-folder>
+        <layout>Menu.xml</layout>
+        <layout>Level1.xml</layout>
+    </layout-folder>
+    <event-folder>
+        <event-sheet>Level1.xml</event-sheet>
+        <event-sheet>Menu.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Function" uid="1" />
+        <global-instance type="Keyboard" uid="4" />
+        <global-instance type="Touch" uid="15">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
+            </properties>
+        </global-instance>
+        <global-instance type="Notifications" uid="20">
+            <properties>
+                <position>bottom-right</position>
+                <fade-in-speed>medium</fade-in-speed>
+                <fade-out-speed>medium</fade-out-speed>
+                <time>5000</time>
+                <max-number>0</max-number>
+                <default-options></default-options>
+                <sticky>true</sticky>
+                <style>Dark</style>
+            </properties>
+        </global-instance>
+        <global-instance type="Audio" uid="21">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
+        <global-instance type="LocalStorage" uid="69" />
+        <global-instance type="Nickname" uid="30" />
+    </global-instances>
+    <sounds-folder>
+        <file name="crunch.ogg" />
+        <file name="Combowhore.ogg" />
+        <file name="Dominating.ogg" />
+        <file name="Double_Kill.ogg" />
+        <file name="firstblood.ogg" />
+        <file name="Fresh_meat.ogg" />
+        <file name="GodLike.ogg" />
+        <file name="Killing_Spree.ogg" />
+        <file name="MegaKill.ogg" />
+        <file name="triple_kill.ogg" />
+        <file name="UltraKill.ogg" />
+        <file name="Unstoppable.ogg" />
+        <file name="WhickedSick.ogg" />
+        <file name="HolyShit.ogg" />
+        <file name="MonsterKill.ogg" />
+        <file name="Ownage.ogg" />
+        <file name="Rampage.ogg" />
+    </sounds-folder>
+    <music-folder>
+        <file name="Mission Plausible.ogg" />
+    </music-folder>
+    <files-folder>
+        <file-folder name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>

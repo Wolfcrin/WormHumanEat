@@ -1,0 +1,2339 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Level1</name>
+    <events>
+        <variable constant="0" name="MusicaOn" sid="818345835234170" static="0" type="number">0</variable>
+        <variable constant="0" name="sedDeSangreMostrado" sid="915994644190015" static="0" type="number">0</variable>
+        <variable constant="0" name="modificadorVelocidadHumanos" sid="556491092816471" static="0" type="number">0</variable>
+        <variable constant="0" name="maxCombo" sid="481758897046416" static="0" type="number">0</variable>
+        <variable constant="0" name="tiempoSpawnHuman" sid="226150741802471" static="0" type="number">1</variable>
+        <variable constant="0" name="UID_UltimoHumanCreado" sid="584318563260170" static="0" type="number">0</variable>
+        <variable constant="0" name="posYAbajo" sid="900515317590792" static="0" type="number">500</variable>
+        <variable constant="0" name="tam" sid="718186690652349" static="0" type="number">8</variable>
+        <event-block sid="184282261986493">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="353286824578201" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="235881251196964" type="Function">
+                    <param id="0" name="Name">&quot;crearSuelo&quot;</param>
+                    <param id="1" name="Parameter {n}">0{###}22</param>
+                </action>
+                <action id="0" name="Call function" sid="644866228583042" type="Function">
+                    <param id="0" name="Name">&quot;crearSuelo&quot;</param>
+                    <param id="1" name="Parameter {n}">500{###}20</param>
+                </action>
+                <action id="0" name="Call function" sid="471270176733675" type="Function">
+                    <param id="0" name="Name">&quot;playMusica&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;Fondo-01&quot;</param>
+                </action>
+                <action behavior="Pin" disabled="1" id="0" name="Pin to object" sid="549067982930920" type="gusanito_cuerpo">
+                    <param id="0" name="Pin to">gusanito</param>
+                    <param id="1" name="Mode">3</param>
+                </action>
+                <action id="4" name="Set maximum" sid="819142021334941" type="ProgressBar">
+                    <param id="0" name="Maximum">gusanito.vida</param>
+                </action>
+                <action id="-9" name="Destroy" sid="989253293318054" type="gusanito_cuerpo" />
+                <action id="-24" name="Move to top" sid="298794528399590" type="Tilemap2" />
+            </actions>
+            <sub-events>
+                <comment>Seteamos el array de los puntos necesarios para hacer combos</comment>
+                <event-block sid="298635314798057">
+                    <conditions />
+                    <actions>
+                        <action id="2" name="Set at X" sid="230737450962238" type="Array">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="2" name="Set at X" sid="611357574112738" type="Array">
+                            <param id="0" name="X">1</param>
+                            <param id="1" name="Value">6</param>
+                        </action>
+                        <action id="2" name="Set at X" sid="392975675980503" type="Array">
+                            <param id="0" name="X">2</param>
+                            <param id="1" name="Value">10</param>
+                        </action>
+                        <action id="2" name="Set at X" sid="986557445601724" type="Array">
+                            <param id="0" name="X">3</param>
+                            <param id="1" name="Value">15</param>
+                        </action>
+                        <action id="2" name="Set at X" sid="371941330430220" type="Array">
+                            <param id="0" name="X">4</param>
+                            <param id="1" name="Value">20</param>
+                        </action>
+                        <action id="2" name="Set at X" sid="315165271371256" type="Array">
+                            <param id="0" name="X">5</param>
+                            <param id="1" name="Value">25</param>
+                        </action>
+                        <action id="2" name="Set at X" sid="533551973354013" type="Array">
+                            <param id="0" name="X">6</param>
+                            <param id="1" name="Value">30</param>
+                        </action>
+                        <action id="2" name="Set at X" sid="255438087373400" type="Array">
+                            <param id="0" name="X">7</param>
+                            <param id="1" name="Value">40</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>PreLoads Musicas</comment>
+                <event-block sid="461461551990961">
+                    <conditions />
+                    <actions>
+                        <action id="4" name="Preload" sid="972353461328357" type="Audio">
+                            <param id="0" name="Audio file">crunch</param>
+                        </action>
+                        <action disabled="1" id="4" name="Preload" sid="834902926861839" type="Audio">
+                            <param id="0" name="Audio file">firstblood</param>
+                        </action>
+                        <action disabled="1" id="4" name="Preload" sid="636401443586997" type="Audio">
+                            <param id="0" name="Audio file">Fresh_meat</param>
+                        </action>
+                        <action disabled="1" id="4" name="Preload" sid="310539446783905" type="Audio">
+                            <param id="0" name="Audio file">GodLike</param>
+                        </action>
+                        <action disabled="1" id="4" name="Preload" sid="764677360861553" type="Audio">
+                            <param id="0" name="Audio file">MegaKill</param>
+                        </action>
+                        <action disabled="1" id="4" name="Preload" sid="824960860151383" type="Audio">
+                            <param id="0" name="Audio file">triple_kill</param>
+                        </action>
+                        <action disabled="1" id="4" name="Preload" sid="486470548654409" type="Audio">
+                            <param id="0" name="Audio file">UltraKill</param>
+                        </action>
+                        <action disabled="1" id="4" name="Preload" sid="982422228512575" type="Audio">
+                            <param id="0" name="Audio file">Unstoppable</param>
+                        </action>
+                        <action disabled="1" id="4" name="Preload" sid="747567084923560" type="Audio">
+                            <param id="0" name="Audio file">GodLike</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="206905942621622" title="Human!!">
+            <sub-events>
+                <comment>Creacion de minas explosivas</comment>
+                <event-block sid="592198257054350">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="729929716355568" type="System">
+                            <param id="0" name="Interval (seconds)">random(10)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="368871243643437">
+                            <conditions>
+                                <condition id="-16" name="Pick random instance" sid="126220376959648" type="System">
+                                    <param id="0" name="Object">fHuman</param>
+                                </condition>
+                                <condition id="2" inverted="1" name="Is playing" sid="617916078595952" type="fHuman">
+                                    <param id="0" name="Animation">&quot;Human_Caballo&quot;</param>
+                                </condition>
+                                <condition id="2" inverted="1" name="Is playing" sid="626570634907798" type="fHuman">
+                                    <param id="0" name="Animation">&quot;Human_Perro&quot;</param>
+                                </condition>
+                                <condition id="2" inverted="1" name="Is playing" sid="275783872036847" type="fHuman">
+                                    <param id="0" name="Animation">&quot;Human_Pistol&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="280127320876663" type="fHuman">
+                                    <param id="0" name="Object">mina</param>
+                                    <param id="1" name="Layer">&quot;suelo&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="562440316098241" type="mina" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Cambiar la direccion cuando llegan al final del escenario</comment>
+                <event-block sid="579455736881828">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="861729540026061" type="fHuman">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-100</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="864471896804409" type="fHuman">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="542463902549435">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="686317281146933" type="fHuman">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth + 100</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="229148464537030" type="fHuman">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Spawn humanos al inicio para que no este tan vacio</comment>
+                <event-block sid="332626843693109">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="946131059048587" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="136247352909366">
+                            <conditions>
+                                <condition id="-10" name="For" sid="947301284583703" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">int(random(30))+35</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="776870914728950" type="Function">
+                                    <param id="0" name="Name">&quot;crearHumano&quot;</param>
+                                    <param id="1" name="Parameter {n}">random(-20,LayoutWidth+30)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Spawn humanos cada ciertos segundos.. ponemos que solo se spawn cuando haya menos de 150 humanos caminando... para evitar que haya infinitos</comment>
+                <event-block sid="495077104229521">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="206404529942577" type="System">
+                            <param id="0" name="Interval (seconds)">random(tiempoSpawnHuman)+(tiempoSpawnHuman-1)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="133127187712524" type="Function">
+                            <param id="0" name="Name">&quot;crearHumano&quot;</param>
+                            <param id="1" name="Parameter {n}">choose(-10,-15,-25,-35,-40,-45,-50,LayoutWidth+30,LayoutWidth+35,LayoutWidth+40,LayoutWidth+45)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Dependiendo de donde se spawn definimos la direccion de la imagen</comment>
+                <comment>Lo horientamos dependiendo de que lado salio</comment>
+                <event-block sid="780876344163918">
+                    <conditions>
+                        <condition id="-18" name="On created" sid="416836462579220" type="fHuman" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="811348936969134">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="649930544516754" type="fHuman">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="X co-ordinate">LayoutWidth</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="7" name="Set mirrored" sid="716004713456887" type="fHuman">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Incrementamos la velocidad de los humanos un poco cada 25 segundos :)</comment>
+                <event-block sid="421069495111428">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="407700050724399" type="System">
+                            <param id="0" name="Interval (seconds)">60</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="389361152430189" type="System">
+                            <param id="0" name="Variable">modificadorVelocidadHumanos</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">6</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="292956715824291" type="System">
+                            <param id="0" name="Variable">modificadorVelocidadHumanos</param>
+                            <param id="1" name="Value">0.2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>El movimiento de los humanos dependiendo la direcion de la imagen</comment>
+                <event-block sid="575461128232218">
+                    <conditions>
+                        <condition id="7" name="Is mirrored" sid="355590256197388" type="fHuman" />
+                    </conditions>
+                    <actions>
+                        <action id="-23" name="Move at angle" sid="763652342013356" type="fHuman">
+                            <param id="0" name="Angle">180</param>
+                            <param id="1" name="Distance">50*dt +(modificadorVelocidadHumanos)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="182514360258909">
+                            <conditions>
+                                <condition id="2" name="Is playing" sid="587846307940534" type="fHuman">
+                                    <param id="0" name="Animation">&quot;Human_Perro&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-23" name="Move at angle" sid="643816155379094" type="fHuman">
+                                    <param id="0" name="Angle">180</param>
+                                    <param id="1" name="Distance">-10*dt</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="544560929996175">
+                            <conditions>
+                                <condition id="2" name="Is playing" sid="179033196615743" type="fHuman">
+                                    <param id="0" name="Animation">&quot;Human_Caballo&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-23" name="Move at angle" sid="952125322582740" type="fHuman">
+                                    <param id="0" name="Angle">180</param>
+                                    <param id="1" name="Distance">25*dt</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="921749682298750">
+                    <conditions>
+                        <condition id="7" inverted="1" name="Is mirrored" sid="255419760805501" type="fHuman" />
+                    </conditions>
+                    <actions>
+                        <action id="-23" name="Move at angle" sid="972984411564467" type="fHuman">
+                            <param id="0" name="Angle">0</param>
+                            <param id="1" name="Distance">50*dt  +(modificadorVelocidadHumanos)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="215190752942082">
+                            <conditions>
+                                <condition id="2" name="Is playing" sid="484192300184427" type="fHuman">
+                                    <param id="0" name="Animation">&quot;Human_Perro&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-23" name="Move at angle" sid="914550642411492" type="fHuman">
+                                    <param id="0" name="Angle">0</param>
+                                    <param id="1" name="Distance">-10*dt</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="520782122972585">
+                            <conditions>
+                                <condition id="2" name="Is playing" sid="370308297715707" type="fHuman">
+                                    <param id="0" name="Animation">&quot;Human_Caballo&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-23" name="Move at angle" sid="287102676896548" type="fHuman">
+                                    <param id="0" name="Angle">0</param>
+                                    <param id="1" name="Distance">20*dt</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Esto esta aca para ver si mejora el rendimiento, los humanos que no estan en pantalla no tiene colision</comment>
+                <event-block sid="937674879878218">
+                    <conditions>
+                        <condition id="-3" name="Is on-screen" sid="138128604206248" type="fHuman" />
+                    </conditions>
+                    <actions>
+                        <action id="11" name="Set collisions enabled" sid="816928043021336" type="fHuman">
+                            <param id="0" name="Collisions">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="931860723629490">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="605413107804426" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="11" name="Set collisions enabled" sid="283439013639285" type="fHuman">
+                            <param id="0" name="Collisions">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Humanos con armas</comment>
+                <variable constant="0" name="anguloBala" sid="665322067755420" static="0" type="number">0</variable>
+                <event-block sid="142496154502270">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="624501177207605" type="fHuman">
+                            <param id="0" name="Object">gusanito</param>
+                        </condition>
+                        <condition id="2" name="Is playing" sid="843436899306968" type="fHuman">
+                            <param id="0" name="Animation">&quot;Human_Pistol&quot;</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="481727553304841" type="fHuman">
+                            <param id="0" name="Instance variable">disparando</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="937469554106063" type="fHuman">
+                            <param id="0" name="Instance variable">disparando</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="448914655877161" type="fHuman">
+                            <param id="0" name="Instance variable">asustado</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="918055669288596" type="System">
+                            <param id="0" name="Variable">anguloBala</param>
+                            <param id="1" name="Value">Function.Call(&quot;obtenerAnguloDeDisparo&quot;,fHuman.UID)</param>
+                        </action>
+                        <action id="0" name="Call function" sid="641228206056359" type="Function">
+                            <param id="0" name="Name">&quot;crearProyectil&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;rifle&quot;{###}fHuman.ImagePointX(0){###}fHuman.ImagePointY(0){###}fHuman.LayerName{###}fHuman.UID{###}anguloBala{###}1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="530204172321089">
+                            <conditions />
+                            <actions>
+                                <action id="-16" name="Wait" sid="481951744090769" type="System">
+                                    <param id="0" name="Seconds">1.5</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="552094068927454" type="fHuman">
+                                    <param id="0" name="Instance variable">disparando</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Cuando un humano que tiene vision ve al gusano</comment>
+                <event-block sid="753900839375161">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="817148361571820" type="fHuman">
+                            <param id="0" name="Instance variable">asustado</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="435592852317185" type="fHuman">
+                            <param id="0" name="Object">Asustado</param>
+                            <param id="1" name="Layer">&quot;gusa&quot;</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                        <action behavior="PinToImagePoint" id="1" name="Pin to image point" sid="406627080238993" type="Asustado">
+                            <param id="0" name="Pin to">fHuman</param>
+                            <param id="1" name="ImagePoint">1</param>
+                            <param id="2" name="Mode">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="665485847190043" type="Asustado">
+                            <param id="0" name="Instance variable">uid_padre</param>
+                            <param id="1" name="Value">fHuman.UID</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="413511492550026" type="fHuman">
+                            <param id="0" name="Instance variable">asustado</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="559956280350288" type="System">
+                            <param id="0" name="Seconds">1.5</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="161508463821300" type="Asustado" />
+                    </actions>
+                </event-block>
+                <comment>Destruimos todos los avisos de asustado cuando el humano muere</comment>
+                <event-block sid="177673811088384">
+                    <conditions>
+                        <condition id="-19" name="On destroyed" sid="854018458967043" type="fHuman" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="985228025853514">
+                            <conditions>
+                                <condition id="-33" name="Pick by comparison" sid="548708659861202" type="System">
+                                    <param id="0" name="Object">Asustado</param>
+                                    <param id="1" name="Expression">Asustado.uid_padre</param>
+                                    <param id="2" name="Comparison">0</param>
+                                    <param id="3" name="Value">fHuman.UID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="500863036472717" type="Asustado" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Nos devuelve el angulo al que van als balas, si arriba o abajo dependiendo de donde esta el gusanito</comment>
+                <event-block sid="697650539433239">
+                    <conditions>
+                        <condition id="0" name="On function" sid="796289647118092" type="Function">
+                            <param id="0" name="Name">&quot;obtenerAnguloDeDisparo&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <variable constant="0" name="Incremento" sid="657318545743691" static="0" type="number">25</variable>
+                        <event-block sid="559788016394182">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="692232572073539" type="fHuman">
+                                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>Gusanito Arriba del humano</comment>
+                                <event-block sid="619382556948186">
+                                    <conditions>
+                                        <condition id="-2" name="Compare Y" sid="151314426643737" type="gusanito">
+                                            <param id="0" name="Comparison">2</param>
+                                            <param id="1" name="Y co-ordinate">fHuman.Y</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="614293475812531">
+                                            <conditions>
+                                                <condition id="7" name="Is mirrored" sid="262372492432239" type="fHuman" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="1" name="Set return value" sid="867625009931504" type="Function">
+                                                    <param id="0" name="Value">225 - Incremento</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="565662842619854">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="915359160676992" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="1" name="Set return value" sid="639385669273253" type="Function">
+                                                    <param id="0" name="Value">315 + Incremento</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <comment>Gusanito abajo del humano</comment>
+                                <event-block sid="387250593140600">
+                                    <conditions>
+                                        <condition id="-2" name="Compare Y" sid="585730629266316" type="gusanito">
+                                            <param id="0" name="Comparison">4</param>
+                                            <param id="1" name="Y co-ordinate">fHuman.Y</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="552913744719524">
+                                            <conditions>
+                                                <condition id="7" name="Is mirrored" sid="381834688634931" type="fHuman" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="1" name="Set return value" sid="788091090968801" type="Function">
+                                                    <param id="0" name="Value">135 + Incremento</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="966358682791714">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="773602594527448" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="1" name="Set return value" sid="574617906015193" type="Function">
+                                                    <param id="0" name="Value">45 - Incremento</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Crea lo humanos que van caminando por alli</comment>
+                <event-block sid="674976531851234">
+                    <conditions>
+                        <condition id="0" name="On function" sid="262927731261834" type="Function">
+                            <param id="0" name="Name">&quot;crearHumano&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="453497226131043">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="988039571344828" type="System">
+                                    <param id="0" name="First value">fHuman.Count</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">150</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="214413737820716" type="System">
+                                    <param id="0" name="Object to create">fHuman</param>
+                                    <param id="1" name="Layer">&quot;gusa&quot;</param>
+                                    <param id="2" name="X">Function.Param(0)</param>
+                                    <param id="3" name="Y">random(50)+400</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="786811457357127">
+                                    <conditions>
+                                        <condition disabled="1" id="-14" name="Pick by unique ID" sid="127465557287786" type="fHuman">
+                                            <param id="0" name="Unique ID">Nickname.LastCreatedInstUID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="912596440008790" type="fHuman">
+                                            <param id="0" name="Animation">choose(&quot;Human_1&quot;,&quot;Human_2&quot;,&quot;Human_3&quot;,&quot;Human_4&quot;,&quot;Human_Caballo&quot;,&quot;Human_Perro&quot;,&quot;Human_Pistol&quot;)</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="860433789775986" type="fHuman">
+                                            <param id="0" name="Instance variable">fCantidadPaCombo</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="627791569779070">
+                                            <conditions>
+                                                <condition id="2" name="Is playing" sid="414405311761063" type="fHuman">
+                                                    <param id="0" name="Animation">&quot;Human_Caballo&quot;</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="311889476755904" type="fHuman">
+                                                    <param id="0" name="Instance variable">fPuntos</param>
+                                                    <param id="1" name="Value">25</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="654736475538612" type="fHuman">
+                                                    <param id="0" name="Instance variable">fCantidadPaCombo</param>
+                                                    <param id="1" name="Value">2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="209783430039927">
+                                            <conditions>
+                                                <condition id="2" name="Is playing" sid="264073131453148" type="fHuman">
+                                                    <param id="0" name="Animation">&quot;Human_Perro&quot;</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="366472516932731" type="fHuman">
+                                                    <param id="0" name="Instance variable">fPuntos</param>
+                                                    <param id="1" name="Value">12</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="233655837533883" type="fHuman">
+                                                    <param id="0" name="Instance variable">fCantidadPaCombo</param>
+                                                    <param id="1" name="Value">2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="326729472535171">
+                                            <conditions>
+                                                <condition id="2" name="Is playing" sid="526848489199542" type="fHuman">
+                                                    <param id="0" name="Animation">&quot;Human_Pistol&quot;</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="717917109792482" type="fHuman">
+                                                    <param id="0" name="Instance variable">fPuntos</param>
+                                                    <param id="1" name="Value">13</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="898464627875315" type="fHuman">
+                                                    <param id="0" name="Instance variable">fCantidadPaCombo</param>
+                                                    <param id="1" name="Value">2</param>
+                                                </action>
+                                                <action behavior="LineOfSight" id="1" name="Set cone of view" sid="681684167947469" type="fHuman">
+                                                    <param id="0" name="Cone of view">90</param>
+                                                </action>
+                                                <action behavior="LineOfSight" id="0" name="Set range" sid="722087991569775" type="fHuman">
+                                                    <param id="0" name="Range">200</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="684567222163856">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="244714528637437" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action behavior="LineOfSight" id="1" name="Set cone of view" sid="626055202183041" type="fHuman">
+                                                    <param id="0" name="Cone of view">0</param>
+                                                </action>
+                                                <action behavior="LineOfSight" id="0" name="Set range" sid="979253062723934" type="fHuman">
+                                                    <param id="0" name="Range">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="144459255226950" title="Controls">
+            <sub-events>
+                <event-block sid="998397189679284">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="107958550324097" type="Keyboard">
+                            <param id="0" name="Key">32 (Barra Espaciadora)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="919910065403064" type="System">
+                            <param id="0" name="Variable">tiempoSpawnHuman</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block any="1" sid="306614741802104">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="289727229395490" type="Keyboard">
+                            <param id="0" name="Key">39 (Right arrow)</param>
+                        </condition>
+                        <condition id="4" name="Is touching object" sid="848286435490804" type="Touch">
+                            <param id="0" name="Object">disparo</param>
+                        </condition>
+                        <condition id="2" name="Key is down" sid="896877394635178" type="Keyboard">
+                            <param id="0" name="Key">68 (D)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-18" name="Rotate clockwise" sid="447573118295314" type="gusanito">
+                            <param id="0" name="Degrees">120*dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block any="1" sid="348057956000545">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="230744795023345" type="Keyboard">
+                            <param id="0" name="Key">37 (Left arrow)</param>
+                        </condition>
+                        <condition id="4" name="Is touching object" sid="791196310706967" type="Touch">
+                            <param id="0" name="Object">iza_touc</param>
+                        </condition>
+                        <condition id="2" name="Key is down" sid="576588126699742" type="Keyboard">
+                            <param id="0" name="Key">65 (A)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-19" name="Rotate counter-clockwise" sid="817209982101880" type="gusanito">
+                            <param id="0" name="Degrees">120*dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="805770154977172">
+                    <conditions>
+                        <condition disabled="1" id="-20" name="Is on mobile device" sid="331858369097809" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="155466607108108" type="iza_touc">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="340453880375453" type="disparo">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="747187761644784" type="touc_disparo">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="629271335520640">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="282676118420200" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="301363150974876" type="iza_touc">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="787126482924425" type="disparo">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="997114886043100" type="touc_disparo">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="841648887446272" title="Escenario">
+            <sub-events>
+                <variable constant="0" name="crearRandom_Tile_objeto" sid="650077130678903" static="0" type="number">0</variable>
+                <event-block sid="436837375877294">
+                    <conditions>
+                        <condition id="0" name="On function" sid="249963796451609" type="Function">
+                            <param id="0" name="Name">&quot;crearSuelo&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="935734123373054" type="System">
+                            <param id="0" name="Object to create">fondo_tierra</param>
+                            <param id="1" name="Layer">&quot;suelo&quot;</param>
+                            <param id="2" name="X">0</param>
+                            <param id="3" name="Y">Function.Param(0)</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="833490973078784" type="fondo_tierra">
+                            <param id="0" name="Width">LayoutWidth</param>
+                            <param id="1" name="Height">16*Function.Param(1)+16</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="169273821623144" type="fondo_tierra">
+                            <param id="0" name="Opacity">60</param>
+                        </action>
+                        <action id="-25" name="Move to bottom" sid="439539977477165" type="fondo_tierra" />
+                        <action id="-3" name="Create object" sid="202301706014673" type="System">
+                            <param id="0" name="Object to create">Tilemap</param>
+                            <param id="1" name="Layer">&quot;suelo&quot;</param>
+                            <param id="2" name="X">0</param>
+                            <param id="3" name="Y">Function.Param(0)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="243953782189283">
+                            <conditions>
+                                <condition id="-10" name="For" sid="606500730531684" type="System">
+                                    <param id="0" name="Name">&quot;FY&quot;</param>
+                                    <param id="1" name="Start index">0</param>
+                                    <param id="2" name="End index">Function.Param(1)</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="423739907577129">
+                                    <conditions>
+                                        <condition id="-10" name="For" sid="125547734201784" type="System">
+                                            <param id="0" name="Name">&quot;FX&quot;</param>
+                                            <param id="1" name="Start index">0</param>
+                                            <param id="2" name="End index">int(LayoutWidth/tam)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="1" name="Set tile" sid="824811008414405" type="Tilemap">
+                                            <param id="0" name="Tile X">loopindex(&quot;FX&quot;)</param>
+                                            <param id="1" name="Tile Y">loopindex(&quot;FY&quot;)</param>
+                                            <param id="2" name="Tile">0</param>
+                                            <param id="3" name="State">0</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="197027808700499" type="System">
+                                            <param id="0" name="Variable">crearRandom_Tile_objeto</param>
+                                            <param id="1" name="Value">floor(random(50))</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="914219466686152">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="987968193781189" type="System">
+                                                    <param id="0" name="Variable">crearRandom_Tile_objeto</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="1" name="Set tile" sid="703815031398098" type="Tilemap2">
+                                                    <param id="0" name="Tile X">loopindex(&quot;FX&quot;)</param>
+                                                    <param id="1" name="Tile Y">loopindex(&quot;FY&quot;)</param>
+                                                    <param id="2" name="Tile">0</param>
+                                                    <param id="3" name="State">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="887133461834730">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="237865479706496" type="System">
+                                                    <param id="0" name="Variable">crearRandom_Tile_objeto</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">7</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="1" name="Set tile" sid="783865904567564" type="Tilemap2">
+                                                    <param id="0" name="Tile X">loopindex(&quot;FX&quot;)</param>
+                                                    <param id="1" name="Tile Y">loopindex(&quot;FY&quot;)</param>
+                                                    <param id="2" name="Tile">7</param>
+                                                    <param id="3" name="State">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="186785583503073">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="981437120193002" type="System">
+                                                    <param id="0" name="Variable">crearRandom_Tile_objeto</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">5</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="1" name="Set tile" sid="363567280932500" type="Tilemap2">
+                                                    <param id="0" name="Tile X">loopindex(&quot;FX&quot;)</param>
+                                                    <param id="1" name="Tile Y">loopindex(&quot;FY&quot;)</param>
+                                                    <param id="2" name="Tile">5</param>
+                                                    <param id="3" name="State">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="654356369595894" title="Gusanito">
+            <sub-events>
+                <event-block sid="271958385229336">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="198496080836457" type="gusanito">
+                            <param id="0" name="Object">Oro</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Add to" sid="685376195852363" type="gusanito">
+                            <param id="0" name="Instance variable">puntos</param>
+                            <param id="1" name="Value">50</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="650753440595336" type="Oro" />
+                    </actions>
+                </event-block>
+                <event-block sid="486587518546867">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="457365201009037" type="gusanito_cuerpo">
+                            <param id="0" name="Object">Oro</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Add to" sid="599968008076922" type="gusanito">
+                            <param id="0" name="Instance variable">puntos</param>
+                            <param id="1" name="Value">50</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="711804745533469" type="Oro" />
+                    </actions>
+                </event-block>
+                <event-block sid="581289257337757">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="902810514854959" type="gusanito">
+                            <param id="0" name="Instance variable">vida</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Set progress" sid="490680749603253" type="ProgressBar">
+                            <param id="0" name="Value">gusanito.vida</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="510902291603991">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="836765987359083" type="gusanito">
+                            <param id="0" name="Object">mina</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="868229003539869" type="mina">
+                            <param id="0" name="Object">particles_mina</param>
+                            <param id="1" name="Layer">&quot;gusa&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-12" name="Subtract from" sid="153236216874762" type="gusanito">
+                            <param id="0" name="Instance variable">vida</param>
+                            <param id="1" name="Value">25</param>
+                        </action>
+                        <action behavior="ScrollTo" id="0" name="Shake" sid="318050972718527" type="gusanito">
+                            <param id="0" name="Magnitude">10</param>
+                            <param id="1" name="Duration">0.1</param>
+                            <param id="2" name="Mode">0</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="907384045817358" type="gusanito">
+                            <param id="0" name="Speed">gusanito.Bullet.Speed -10</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="867332120244064" type="mina" />
+                        <action id="-16" name="Wait" sid="519374262929683" type="System">
+                            <param id="0" name="Seconds">0.2</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="916048360699956" type="gusanito">
+                            <param id="0" name="Speed">gusanito.Bullet.Speed +10</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="584392967443304">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="839363878933439" type="gusanito">
+                            <param id="0" name="Instance variable">combo_timer</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="847656402442364" type="sfTiempoCombo">
+                            <param id="0" name="Text">gusanito.combo_timer</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="996262103753011">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="289770841407372" type="System">
+                                    <param id="0" name="Interval (seconds)">dt</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Subtract from" sid="494610748064332" type="gusanito">
+                                    <param id="0" name="Instance variable">combo_timer</param>
+                                    <param id="1" name="Value">0.01</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="988647793589941">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="481880339380445" type="gusanito">
+                                    <param id="0" name="Instance variable">combo_timer</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="661399467141769" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="140719773483030" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="0" name="Set text" sid="659283141147674" type="sfCantidadCombo">
+                                    <param id="0" name="Text">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="802708153124230">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="911551070953085" type="gusanito">
+                            <param id="0" name="Object">fHuman</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="6" name="Stop" sid="614099440741463" type="Audio">
+                            <param id="0" name="Tag">&quot;human_die&quot;</param>
+                        </action>
+                        <action id="25" name="Play at object" sid="229600237632122" type="Audio">
+                            <param id="0" name="Audio file">crunch</param>
+                            <param id="1" name="Loop">0</param>
+                            <param id="2" name="Volume">0</param>
+                            <param id="3" name="Object">fHuman</param>
+                            <param id="4" name="Inner angle">360</param>
+                            <param id="5" name="Outer angle">360</param>
+                            <param id="6" name="Outer gain">0</param>
+                            <param id="7" name="Tag (optional)">&quot;human_die&quot;</param>
+                        </action>
+                        <action id="-11" name="Add to" sid="645150028923299" type="gusanito">
+                            <param id="0" name="Instance variable">humano_comidos</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="475159531583364">
+                            <conditions>
+                                <condition id="2" name="Is playing" sid="192567417198147" type="fHuman">
+                                    <param id="0" name="Animation">&quot;Human_Caballo&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="768344568571754" type="fHuman">
+                                    <param id="0" name="Object">sangre</param>
+                                    <param id="1" name="Layer">&quot;gusa&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="1" name="Set rate" sid="612673850863856" type="sangre">
+                                    <param id="0" name="Rate">200</param>
+                                </action>
+                                <action id="5" name="Set size" sid="722457994154891" type="sangre">
+                                    <param id="0" name="Size">4</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="156685535270072" type="fHuman" />
+                            </actions>
+                        </event-block>
+                        <event-block sid="852242619260339">
+                            <conditions>
+                                <condition id="2" name="Is playing" sid="495504147762989" type="fHuman">
+                                    <param id="0" name="Animation">&quot;Human_Perro&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="285231932874466" type="fHuman">
+                                    <param id="0" name="Object">sangre</param>
+                                    <param id="1" name="Layer">&quot;gusa&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="1" name="Set rate" sid="321327731788038" type="sangre">
+                                    <param id="0" name="Rate">125</param>
+                                </action>
+                                <action id="5" name="Set size" sid="656168098778053" type="sangre">
+                                    <param id="0" name="Size">2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="138573593987242">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="372976373701517" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="612134930911380" type="fHuman">
+                                    <param id="0" name="Object">sangre</param>
+                                    <param id="1" name="Layer">&quot;gusa&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="349998894241920">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="181003759894273" type="gusanito">
+                                    <param id="0" name="Instance variable">combo_timer</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="801427117206160" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="618108810432714" type="gusanito">
+                                    <param id="0" name="Instance variable">combo_timer</param>
+                                    <param id="1" name="Value">0.2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="838925532742210">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="599610586989012" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="149621767345216" type="gusanito">
+                                    <param id="0" name="Instance variable">combo_timer</param>
+                                    <param id="1" name="Value">3</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="945509889113140" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="202485120065849">
+                            <conditions />
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="953892326894686" type="fHuman">
+                                    <param id="0" name="Object">sfHuman_Puntos</param>
+                                    <param id="1" name="Layer">&quot;gusa&quot;</param>
+                                    <param id="2" name="Image point">1</param>
+                                </action>
+                                <action id="0" name="Call function" sid="420892735107520" type="Function">
+                                    <param id="0" name="Name">&quot;controlSonidos&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                                <action id="0" name="Set text" sid="234885015900756" type="sfHuman_Puntos">
+                                    <param id="0" name="Text">&quot;+&quot;&amp;human.puntos</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="864220610423391" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Value">fHuman.fPuntos</param>
+                                </action>
+                                <action id="0" name="Set text" sid="315526002719564" type="sfPuntos">
+                                    <param id="0" name="Text">gusanito.puntos</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="712834299406692" type="fHuman" />
+                                <action id="-16" name="Wait" sid="468711921660132" type="System">
+                                    <param id="0" name="Seconds">0.35</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="271636597382064" type="sfHuman_Puntos" />
+                                <action disabled="1" id="0" name="Set text" sid="163829210942410" type="sfHuman_Puntos">
+                                    <param id="0" name="Text">&quot;+&quot;&amp;human.puntos</param>
+                                </action>
+                                <action disabled="1" id="-11" name="Add to" sid="406353762557593" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Value">human.puntos</param>
+                                </action>
+                                <action disabled="1" id="0" name="Set text" sid="288622285897894" type="sfPuntos">
+                                    <param id="0" name="Text">gusanito.puntos</param>
+                                </action>
+                                <action disabled="1" id="-9" name="Destroy" sid="733934531251934" type="Human" />
+                                <action disabled="1" id="-16" name="Wait" sid="365165213345281" type="System">
+                                    <param id="0" name="Seconds">0.35</param>
+                                </action>
+                                <action disabled="1" id="-9" name="Destroy" sid="837007280174687" type="sfHuman_Puntos" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="686542048566922">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="417903922797458" type="gusanito">
+                            <param id="0" name="Object">Tilemap</param>
+                        </condition>
+                        <condition id="0" name="Compare tile at" sid="618700827377922" type="Tilemap">
+                            <param id="0" name="Tile X">Tilemap.PositionToTileX(gusanito.X)</param>
+                            <param id="1" name="Tile Y">Tilemap.PositionToTileY(gusanito.Y)</param>
+                            <param id="2" name="Comparison">5</param>
+                            <param id="3" name="Tile">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Erase tile" sid="687300705083325" type="Tilemap">
+                            <param id="0" name="Tile X">Tilemap.PositionToTileX(gusanito.X)</param>
+                            <param id="1" name="Tile Y">Tilemap.PositionToTileY(gusanito.y)</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="156737899577910" type="gusanito">
+                            <param id="0" name="Object">particles_rocas</param>
+                            <param id="1" name="Layer">&quot;gusa&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="806416595036571">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="594260341309623" type="System">
+                                    <param id="0" name="First value">int(random(1,50))</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="777163937948614" type="gusanito">
+                                    <param id="0" name="Object">Oro</param>
+                                    <param id="1" name="Layer">&quot;suelo&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="880314186492576" type="Oro" />
+                                <action id="-16" name="Wait" sid="525605164457006" type="System">
+                                    <param id="0" name="Seconds">0.5</param>
+                                </action>
+                                <action id="11" name="Set collisions enabled" sid="944030995674113" type="Oro">
+                                    <param id="0" name="Collisions">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="449670828677247">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="136878552122630" type="gusanito">
+                            <param id="0" name="Instance variable">vida</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Set progress" sid="828284808704021" type="ProgressBar">
+                            <param id="0" name="Value">gusanito.vida</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="371167437495386" type="Fondo_Puntaje">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="0" name="Set text" sid="172839376680415" type="txtFinHumanDevorados">
+                            <param id="0" name="Text">gusanito.humano_comidos</param>
+                        </action>
+                        <action id="0" name="Set text" sid="528898386048899" type="txtFinMaxCombo">
+                            <param id="0" name="Text">sfMaxCombo.Text</param>
+                        </action>
+                        <action id="0" name="Set text" sid="977862242716680" type="txtfinPuntaje">
+                            <param id="0" name="Text">sfPuntos.Text</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="294323154092697" type="txtTitlesFin">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="912802341999693" type="txtFinHumanDevorados">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="968456397863521" type="txtFinMaxCombo">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="403435167836633" type="txtfinPuntaje">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="870811981443950" type="txtPerdiste">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="2" name="Set visible" sid="662341945441535" type="Reiniciar">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="556243789636095" type="Icono_Humano">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-21" name="Reset global variables" sid="603623573412290" type="System" />
+                        <action id="-12" name="Set group active" sid="148333889450338" type="System">
+                            <param id="0" name="Group name">&quot;Controls&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="580917907604652" type="System">
+                            <param id="0" name="Group name">&quot;Escenario&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="333467594868466" type="System">
+                            <param id="0" name="Group name">&quot;Funciones&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="872120494921765" type="System">
+                            <param id="0" name="Group name">&quot;Gusanito&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="398703134387660" type="System">
+                            <param id="0" name="Group name">&quot;Human!!&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Cuando el gusano mata mucho se vuelve muy sangriento</comment>
+                <event-block sid="474946501283528">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="949759208902852" type="gusanito">
+                            <param id="0" name="Instance variable">cantidad_combo</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">50</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="993621194533825" type="gusanito">
+                            <param id="0" name="Animation">&quot;LLenoDeIra&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="486190280919855" type="gusanito_cuerpo">
+                            <param id="0" name="Animation">&quot;LLenoDeIra&quot;</param>
+                            <param id="1" name="From">0</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="417240143725929" type="gusanito">
+                            <param id="0" name="Speed">325</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="965413095468005" type="gusanito">
+                            <param id="0" name="Instance variable">Skin_Estado</param>
+                            <param id="1" name="Value">&quot;llenodeira&quot;</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="982285707915093" type="gusanito">
+                            <param id="0" name="Object">sangre</param>
+                            <param id="1" name="Layer">&quot;gusa&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="5" name="Set size" sid="866504462111278" type="sangre">
+                            <param id="0" name="Size">1</param>
+                        </action>
+                        <action id="1" name="Set rate" sid="669169724457206" type="sangre">
+                            <param id="0" name="Rate">gusanito.cantidad_combo</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="774655782210876" type="sangre">
+                            <param id="0" name="Opacity">50</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="703090978038373">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="249413499596901" type="System">
+                                    <param id="0" name="Variable">sedDeSangreMostrado</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Stop" sid="874881513521992" type="Audio">
+                                    <param id="0" name="Tag">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Play" sid="284404633086513" type="Audio">
+                                    <param id="0" name="Audio file">Rampage</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;combo&quot;</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="365562846968047" type="sfImagenCombo">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="0" name="Set text" sid="994950227078407" type="sfImagenCombo">
+                                    <param id="0" name="Text">&quot;¡¡¡Sed de sangre!!!&quot;</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="857812435406209" type="System">
+                                    <param id="0" name="Seconds">0.5</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="504586621071748" type="sfImagenCombo">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="602203538354408" type="System">
+                                    <param id="0" name="Variable">sedDeSangreMostrado</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="747429308333442">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="651517323977666" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="879436269811434" type="gusanito">
+                            <param id="0" name="Animation">gusanito.skin</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="939051189274625" type="gusanito_cuerpo">
+                            <param id="0" name="Animation">gusanito.skin</param>
+                            <param id="1" name="From">0</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="808538636197307" type="gusanito">
+                            <param id="0" name="Speed">250</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="937697942912558" type="gusanito">
+                            <param id="0" name="Instance variable">Skin_Estado</param>
+                            <param id="1" name="Value">&quot;comun&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="945148489574614" title="Funciones">
+            <sub-events>
+                <event-block sid="274908627042187">
+                    <conditions>
+                        <condition id="0" name="On function" sid="688769240889982" type="Function">
+                            <param id="0" name="Name">&quot;mostrarCartelCombo&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="728850713896107" type="sfImagenCombo">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="0" name="Set text" sid="899296177160144" type="sfImagenCombo">
+                            <param id="0" name="Text">Function.Param(0)</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="497687960422736" type="System">
+                            <param id="0" name="Seconds">0.5</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="485542866345583" type="sfImagenCombo">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="572714398266909">
+                    <conditions>
+                        <condition id="0" name="On function" sid="330486509930629" type="Function">
+                            <param id="0" name="Name">&quot;controlSonidos&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="260729241700724" type="sfCantidadCombo">
+                            <param id="0" name="Text">gusanito.cantidad_combo</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="560759927870542">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="630385715203311" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">maxCombo</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="851442505469047" type="System">
+                                    <param id="0" name="Variable">maxCombo</param>
+                                    <param id="1" name="Value">gusanito.cantidad_combo</param>
+                                </action>
+                                <action id="0" name="Set text" sid="504864605031306" type="sfMaxCombo">
+                                    <param id="0" name="Text">gusanito.cantidad_combo</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="321571481493556">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="384361706199224" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Stop" sid="804908431675027" type="Audio">
+                                    <param id="0" name="Tag">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Play" sid="994301574402483" type="Audio">
+                                    <param id="0" name="Audio file">firstblood</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Call function" sid="801851981904929" type="Function">
+                                    <param id="0" name="Name">&quot;mostrarCartelCombo&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;¡¡¡FIRST BLOOD!!!&quot;</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="178703465745862" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Value">25</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="354185667833098">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="417034320069839" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Array.At(1)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Stop" sid="550429848807832" type="Audio">
+                                    <param id="0" name="Tag">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Play" sid="301848582559859" type="Audio">
+                                    <param id="0" name="Audio file">Fresh_meat</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Call function" sid="402063970829523" type="Function">
+                                    <param id="0" name="Name">&quot;mostrarCartelCombo&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;¡¡¡CARNE FRESCA!!!&quot;</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="319070932499545" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Value">50</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="508756559382000" type="System">
+                                    <param id="0" name="Variable">sedDeSangreMostrado</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="633592168594807">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="598343326118710" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Array.At(2)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Stop" sid="408520085384879" type="Audio">
+                                    <param id="0" name="Tag">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Play" sid="891340217316915" type="Audio">
+                                    <param id="0" name="Audio file">MegaKill</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Call function" sid="469768734379405" type="Function">
+                                    <param id="0" name="Name">&quot;mostrarCartelCombo&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;¡¡¡MEGA KILL!!!&quot;</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="362295292725108" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Value">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="293964684894389">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="795143046842872" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Array.At(3)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Stop" sid="463523118595023" type="Audio">
+                                    <param id="0" name="Tag">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Play" sid="983429571083070" type="Audio">
+                                    <param id="0" name="Audio file">triple_kill</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Call function" sid="699930223976079" type="Function">
+                                    <param id="0" name="Name">&quot;mostrarCartelCombo&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;¡¡¡TRIPLE KILL!!!&quot;</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="991113033849220" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Value">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="533286877449848">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="456275252977587" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Array.At(4)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Stop" sid="666442608155577" type="Audio">
+                                    <param id="0" name="Tag">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Play" sid="412372717026655" type="Audio">
+                                    <param id="0" name="Audio file">UltraKill</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Call function" sid="213104767635588" type="Function">
+                                    <param id="0" name="Name">&quot;mostrarCartelCombo&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;¡¡¡ULTRA KILL!!!&quot;</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="688533555218457" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Value">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="979773771769035">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="566207442923977" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Array.At(5)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Stop" sid="449556158225541" type="Audio">
+                                    <param id="0" name="Tag">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Play" sid="755193097313387" type="Audio">
+                                    <param id="0" name="Audio file">Dominating</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Call function" sid="406860889907423" type="Function">
+                                    <param id="0" name="Name">&quot;mostrarCartelCombo&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;¡¡¡DOMINACION!!!&quot;</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="644769646844593" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Value">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="181831846618512">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="751675930463246" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Array.At(6)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Stop" sid="681834485476426" type="Audio">
+                                    <param id="0" name="Tag">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Play" sid="280772201436315" type="Audio">
+                                    <param id="0" name="Audio file">GodLike</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Call function" sid="393358086278252" type="Function">
+                                    <param id="0" name="Name">&quot;mostrarCartelCombo&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;¡¡¡CASI UN DIOS!!!&quot;</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="867469266378097" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Value">200</param>
+                                </action>
+                                <action behavior="ScrollTo" id="0" name="Shake" sid="127905384020145" type="gusanito">
+                                    <param id="0" name="Magnitude">20</param>
+                                    <param id="1" name="Duration">0.2</param>
+                                    <param id="2" name="Mode">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="643797253352066">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="982718733250434" type="gusanito">
+                                    <param id="0" name="Instance variable">cantidad_combo</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Array.At(7)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Stop" sid="876761611965633" type="Audio">
+                                    <param id="0" name="Tag">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Play" sid="908610854987205" type="Audio">
+                                    <param id="0" name="Audio file">Unstoppable</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">0</param>
+                                    <param id="1" name="Tag (optional)">&quot;combo&quot;</param>
+                                </action>
+                                <action id="0" name="Call function" sid="450594159108677" type="Function">
+                                    <param id="0" name="Name">&quot;mostrarCartelCombo&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;¡¡¡IMPARABLE!!!&quot;</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="970669366668185" type="gusanito">
+                                    <param id="0" name="Instance variable">puntos</param>
+                                    <param id="1" name="Value">200 +Array.At(7)</param>
+                                </action>
+                                <action id="2" name="Set at X" sid="237050779213975" type="Array">
+                                    <param id="0" name="X">7</param>
+                                    <param id="1" name="Value">Array.At(7)+22</param>
+                                </action>
+                                <action behavior="ScrollTo" id="0" name="Shake" sid="577437037456186" type="gusanito">
+                                    <param id="0" name="Magnitude">25</param>
+                                    <param id="1" name="Duration">0.3</param>
+                                    <param id="2" name="Mode">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="746405171783020">
+            <conditions>
+                <condition id="0" name="On clicked" sid="292547682016319" type="Reiniciar" />
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="701598926383680" type="System" />
+            </actions>
+        </event-block>
+        <event-block sid="800371836949093">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="111469700455487" type="Keyboard">
+                    <param id="0" name="Key">81 (Q)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="641793273739736" type="gusanito">
+                    <param id="0" name="Instance variable">Habilidad</param>
+                    <param id="1" name="Value">&quot;propulsor&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="175368135441506">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="740563068206575" type="Keyboard">
+                    <param id="0" name="Key">32 (Barra Espaciadora)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="388841989482597" type="Function">
+                    <param id="0" name="Name">&quot;crearProyectil&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;acido&quot;{###}gusanito.X{###}gusanito.y{###}gusanito.LayerName{###}gusanito.UID{###}gusanito.Angle{###}0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="648646048491838">
+            <conditions>
+                <condition id="4" name="Is touching object" sid="482994959273307" type="Touch">
+                    <param id="0" name="Object">touc_disparo</param>
+                </condition>
+                <condition id="3" name="Compare frame" sid="253167156951375" type="touc_disparo">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Number">1</param>
+                </condition>
+                <condition id="-9" name="Is visible" sid="417033456499319" type="touc_disparo" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="616154946075416" type="Function">
+                    <param id="0" name="Name">&quot;crearProyectil&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;acido&quot;{###}gusanito.X{###}gusanito.y{###}gusanito.LayerName{###}gusanito.UID{###}gusanito.Angle{###}0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="668433274347160" title="Proyectiles">
+            <sub-events>
+                <event-block sid="612567148886919">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="452158922250034" type="proyectiles">
+                            <param id="0" name="Object">gusanito</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" sid="929916343166095" type="proyectiles">
+                            <param id="0" name="Instance variable">enemy</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="136372380809599" type="proyectiles" />
+                        <action id="-12" name="Subtract from" sid="351926677035853" type="gusanito">
+                            <param id="0" name="Instance variable">vida</param>
+                            <param id="1" name="Value">proyectiles.danio</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="888135069882535">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="543145673026470" type="proyectiles">
+                            <param id="0" name="Object">proyectiles</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="133645064014594" type="proyectiles" />
+                        <action id="-12" name="Subtract from" sid="343035034039497" type="gusanito">
+                            <param id="0" name="Instance variable">vida</param>
+                            <param id="1" name="Value">proyectiles.danio</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable constant="0" name="duenio1" sid="460109490905534" static="0" type="number">0</variable>
+                        <variable constant="0" name="duenio2" sid="606035625083327" static="0" type="number">0</variable>
+                        <comment>Como son objetos iguales, controlamos que sea enemigos&#x0D;&#x0A;diferenciandolos por las instancias que estan inplicadas en la colision</comment>
+                        <event-block sid="784182495046744">
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" sid="335702894427755" type="System">
+                                    <param id="0" name="Object">proyectiles</param>
+                                    <param id="1" name="Instance">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="824141605249380" type="System">
+                                    <param id="0" name="Variable">duenio1</param>
+                                    <param id="1" name="Value">proyectiles.enemy</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="867476999304727">
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" sid="201643596013128" type="System">
+                                    <param id="0" name="Object">proyectiles</param>
+                                    <param id="1" name="Instance">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="233185312612312" type="System">
+                                    <param id="0" name="Variable">duenio2</param>
+                                    <param id="1" name="Value">proyectiles.enemy</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="462166198084759">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="563308953454142" type="System">
+                                    <param id="0" name="First value">duenio1</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Second value">duenio2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="599916801100252" type="proyectiles" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="947651739820060">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="433289709237771" type="proyectiles">
+                            <param id="0" name="Object">fHuman</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="883615266694897" type="proyectiles">
+                            <param id="0" name="Instance variable">enemy</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="278006863542093" type="proyectiles" />
+                        <action id="-9" name="Destroy" sid="817660921510377" type="fHuman" />
+                    </actions>
+                </event-block>
+                <event-block sid="825569243627326">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="554413048803694" type="proyectiles">
+                            <param id="0" name="Instance variable">destruirAlChocarConTile</param>
+                        </condition>
+                        <condition id="1" name="Is overlapping another object" sid="468440111695990" type="proyectiles">
+                            <param id="0" name="Object">Tilemap</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="326175706036399" type="proyectiles" />
+                    </actions>
+                </event-block>
+                <comment>Recibe el nombre del proyectil&#x0D;&#x0A;POSX&#x0D;&#x0A;POSY&#x0D;&#x0A;Layer&#x0D;&#x0A;UID del padre&#x0D;&#x0A;angulo</comment>
+                <event-block sid="788115204617555">
+                    <conditions>
+                        <condition id="0" name="On function" sid="708805053343527" type="Function">
+                            <param id="0" name="Name">&quot;crearProyectil&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Create instance" sid="769391830320373" type="Nickname">
+                            <param id="0" name="Nickname">Function.Param(0)</param>
+                            <param id="1" name="X">Function.Param(1)</param>
+                            <param id="2" name="Y">Function.Param(2)</param>
+                            <param id="3" name="Layer">Function.Param(3)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="833061991682219">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="947537286494691" type="proyectiles">
+                                    <param id="0" name="Unique ID">Nickname.LastCreatedInstUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="624755118551032" type="proyectiles">
+                                    <param id="0" name="Instance variable">UID_Padre</param>
+                                    <param id="1" name="Value">Function.Param(4)</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="159104208494859">
+                                    <conditions>
+                                        <condition id="1" name="Compare parameter" sid="266274703635728" type="Function">
+                                            <param id="0" name="Index">5</param>
+                                            <param id="1" name="Comparison">1</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="505705823246656" type="proyectiles">
+                                            <param id="0" name="Angle">Function.Param(5)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="628537341135583">
+                                    <conditions>
+                                        <condition id="1" name="Compare parameter" sid="429224028712860" type="Function">
+                                            <param id="0" name="Index">6</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="328097779886037" type="proyectiles">
+                                            <param id="0" name="Instance variable">enemy</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="983445297215127">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="795655899746585" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="398473509472015" type="proyectiles">
+                                            <param id="0" name="Instance variable">enemy</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="977450533016785">
+                    <conditions>
+                        <condition behavior="Bullet" id="1" name="Compare distance travelled" sid="851069511275652" type="proyectiles">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="Distance">proyectiles.distanciaVida</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="975437562509497" type="proyectiles" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="211388640891170" title="Habilidades">
+            <sub-events>
+                <variable constant="0" name="gusanitoVelocidadInicial" sid="372068114026923" static="0" type="number">0</variable>
+                <variable constant="0" name="plusVelocidad" sid="223696519371625" static="0" type="number">0</variable>
+                <variable constant="0" name="llegueLimite" sid="744066273999191" static="0" type="number">0</variable>
+                <event-block sid="753355585123140">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="930126258823585" type="gusanito">
+                            <param id="0" name="Instance variable">Habilidad</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;propulsor&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="894247211703158">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="582481977095416" type="System">
+                                    <param id="0" name="Variable">gusanitoVelocidadInicial</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="661214605193105" type="System">
+                                    <param id="0" name="Variable">gusanitoVelocidadInicial</param>
+                                    <param id="1" name="Value">gusanito.Bullet.Speed</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="544360009434779">
+                            <conditions>
+                                <condition id="-6" name="Every X seconds" sid="929357506040785" type="System">
+                                    <param id="0" name="Interval (seconds)">0.2</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="906482795288969">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="634798217785636" type="System">
+                                            <param id="0" name="Variable">plusVelocidad</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">200</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" sid="920338111119250" type="System">
+                                            <param id="0" name="Variable">llegueLimite</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Bullet" id="0" name="Set speed" sid="528755852817194" type="gusanito">
+                                            <param id="0" name="Speed">gusanito.Bullet.Speed+plusVelocidad</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="995609547211556" type="System">
+                                            <param id="0" name="Variable">plusVelocidad</param>
+                                            <param id="1" name="Value">5</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="716140717660272">
+                                            <conditions>
+                                                <condition id="3" name="Compare frame" sid="400341312341648" type="gusanito_cuerpo">
+                                                    <param id="0" name="Comparison">0</param>
+                                                    <param id="1" name="Number">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Spawn another object" sid="221227193134780" type="gusanito_cuerpo">
+                                                    <param id="0" name="Object">escudo</param>
+                                                    <param id="1" name="Layer">0</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                                <action id="1" name="Set rate" sid="825530307742340" type="escudo">
+                                                    <param id="0" name="Rate">plusVelocidad/2</param>
+                                                </action>
+                                                <action id="-8" name="Set angle" sid="120810532667628" type="escudo">
+                                                    <param id="0" name="Angle">180</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="770743596370577">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="545875410485489" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="343728464759514" type="System">
+                                            <param id="0" name="Variable">llegueLimite</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="812903632394660">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="221468956347184" type="System">
+                                                    <param id="0" name="Variable">plusVelocidad</param>
+                                                    <param id="1" name="Comparison">4</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                                <condition disabled="1" id="-6" name="Every X seconds" sid="312399191165200" type="System">
+                                                    <param id="0" name="Interval (seconds)">0.5</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action behavior="Bullet" id="0" name="Set speed" sid="371247516157947" type="gusanito">
+                                                    <param id="0" name="Speed">gusanito.Bullet.Speed-plusVelocidad</param>
+                                                </action>
+                                                <action id="-11" name="Subtract from" sid="885169377932904" type="System">
+                                                    <param id="0" name="Variable">plusVelocidad</param>
+                                                    <param id="1" name="Value">5</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="998155093796080">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="545740607507371" type="System">
+                                                    <param id="0" name="Variable">plusVelocidad</param>
+                                                    <param id="1" name="Comparison">3</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="557873743929814" type="gusanito">
+                                                    <param id="0" name="Instance variable">Habilidad</param>
+                                                    <param id="1" name="Value">&quot;&quot;</param>
+                                                </action>
+                                                <action id="-9" name="Destroy" sid="723400345908106" type="escudo" />
+                                                <action id="-9" name="Set value" sid="855562035137167" type="System">
+                                                    <param id="0" name="Variable">llegueLimite</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block disabled="1" sid="167211119809992">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="346927152503149" type="gusanito">
+                    <param id="0" name="Instance variable">humano_comidos</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">100</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="9" name="Set scale" sid="262851582237291" type="gusanito">
+                    <param id="0" name="Scale">gusanito.humano_comidos/100</param>
+                </action>
+                <action id="9" name="Set scale" sid="394670158672753" type="gusanito_cuerpo">
+                    <param id="0" name="Scale">gusanito.humano_comidos/100</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="701425967531031">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="433661140748356" type="Keyboard">
+                    <param id="0" name="Key">87 (W)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action disabled="1" id="4" name="Set animation" sid="461006722598467" type="gusanito">
+                    <param id="0" name="Animation">&quot;Esqueleto&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action disabled="1" id="4" name="Set animation" sid="230727757291453" type="gusanito_cuerpo">
+                    <param id="0" name="Animation">&quot;Esqueleto&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="414171331963168" type="gusanito">
+                    <param id="0" name="Instance variable">skin</param>
+                    <param id="1" name="Value">&quot;Esqueleto&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="103915223344445" title="Body">
+            <sub-events>
+                <variable constant="0" name="tCreacion" sid="923421702922183" static="0" type="number">0.5</variable>
+                <variable constant="0" name="nlerp" sid="315643504640587" static="0" type="number">0.9</variable>
+                <variable constant="0" name="move" sid="907093369326867" static="0" type="number">0</variable>
+                <comment>Set up Sprite creation, move 0=the start move2=when you eat the grasshopper, set speed, move grasshopper.</comment>
+                <event-block sid="802510554991354">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="172679371811647" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="462996775962283">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="516675991013958" type="System">
+                                    <param id="0" name="Variable">move</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="949612952975752" type="System">
+                                    <param id="0" name="Object to create">gusanito_cuerpo</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">lerp(gusanito.ImagePointX(1),gusanito.ImagePointX(1),nlerp)</param>
+                                    <param id="3" name="Y">lerp(gusanito.ImagePointY(1),gusanito.ImagePointY(1),nlerp)</param>
+                                </action>
+                                <action id="-29" name="Move to object" sid="290578493898505" type="gusanito_cuerpo">
+                                    <param id="0" name="Where">1</param>
+                                    <param id="1" name="Object">gusanito</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="120765125620252">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="400274023993231" type="gusanito">
+                                            <param id="0" name="Instance variable">Skin_Estado</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;llenodeira&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="828437868408617" type="gusanito_cuerpo">
+                                            <param id="0" name="Animation">&quot;LLenoDeIra&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="402983660246185" type="gusanito">
+                                            <param id="0" name="Animation">&quot;LLenoDeIra&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="182802403793811">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="777027963209918" type="gusanito">
+                                            <param id="0" name="Instance variable">skin</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;Esqueleto&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="263808354124793" type="gusanito_cuerpo">
+                                            <param id="0" name="Animation">&quot;Esqueleto&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="630047930500033" type="gusanito">
+                                            <param id="0" name="Animation">&quot;Esqueleto&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="231063408380166">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="103664146817788" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="799046964965573" type="gusanito_cuerpo">
+                                            <param id="0" name="Animation">&quot;Comun&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="213217246294178" type="gusanito">
+                                            <param id="0" name="Animation">&quot;Comun&quot;</param>
+                                            <param id="1" name="From">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>wait growth seconds, then destroy sprite.</comment>
+                <event-block sid="896613107040380">
+                    <conditions>
+                        <condition id="-18" name="On created" sid="325099236258370" type="gusanito_cuerpo" />
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Wait" sid="214663529513562" type="System">
+                            <param id="0" name="Seconds">tCreacion</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="862111936169792" type="gusanito_cuerpo" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="935437098803330">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="958108102129961" type="gusanito">
+                    <param id="0" name="Object">Tilemap2</param>
+                </condition>
+                <condition id="0" name="Compare tile at" sid="185391635590406" type="Tilemap2">
+                    <param id="0" name="Tile X">Tilemap2.PositionToTileX(gusanito.X)</param>
+                    <param id="1" name="Tile Y">Tilemap2.PositionToTileY(gusanito.Y)</param>
+                    <param id="2" name="Comparison">5</param>
+                    <param id="3" name="Tile">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Erase tile" sid="213618039406458" type="Tilemap2">
+                    <param id="0" name="Tile X">Tilemap2.PositionToTileX(gusanito.X)</param>
+                    <param id="1" name="Tile Y">Tilemap2.PositionToTileY(gusanito.y)</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="988816528254949" type="gusanito">
+                    <param id="0" name="Object">particles_rocas</param>
+                    <param id="1" name="Layer">&quot;gusa&quot;</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="368737483727677" title="UI">
+            <sub-events>
+                <event-block sid="273381008832933">
+                    <conditions>
+                        <condition id="0" name="On function" sid="691112417228255" type="Function">
+                            <param id="0" name="Name">&quot;playMusica&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="748023075855899">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="366439776623876" type="System">
+                                    <param id="0" name="Variable">MusicaOn</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="8" name="Set silent" sid="425066378444800" type="Audio">
+                                    <param id="0" name="Mode">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="703005861638278">
+                                    <conditions>
+                                        <condition id="1" name="Compare parameter" sid="882169483818306" type="Function">
+                                            <param id="0" name="Index">0</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;Fondo-01&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Play" sid="467748788904439" type="Audio">
+                                            <param id="0" name="Audio file">Mission Plausible</param>
+                                            <param id="2" name="Loop">1</param>
+                                            <param id="3" name="Volume">-10</param>
+                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="523520672665677">
+                    <conditions>
+                        <condition id="0" name="On function" sid="211333022166750" type="Function">
+                            <param id="0" name="Name">&quot;detenerMusica&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="8" name="Set silent" sid="548228070414633" type="Audio">
+                            <param id="0" name="Mode">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="356477738421962">
+                    <conditions>
+                        <condition id="17" name="On tap object" sid="422797530260611" type="Touch">
+                            <param id="0" name="Object">MusicaOnOFF</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="302631897275238">
+                            <conditions>
+                                <condition id="3" name="Compare frame" sid="703538890085679" type="MusicaOnOFF">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Number">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" sid="588388449450536" type="MusicaOnOFF">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="911948597643342" type="System">
+                                    <param id="0" name="Variable">MusicaOn</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="963478404787621">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="685522975495444" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" sid="833243389239935" type="MusicaOnOFF">
+                                    <param id="0" name="Frame number">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="744256518101659" type="System">
+                                    <param id="0" name="Variable">MusicaOn</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Call function" sid="819735129484806" type="Function">
+                                    <param id="0" name="Name">&quot;detenerMusica&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

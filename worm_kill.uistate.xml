@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2uistate>
+    <!--This is a UI state file - its content describes the user interface settings when the project was last open.
+It is entirely optional and the project will load without it.  If you are placing the project under source control,
+you probably do not want to add any .uistate.xml files to the repository.-->
+    <configurations>
+        <active>
+            <configuration name="HTML5" />
+        </active>
+        <display name="HTML5" />
+    </configurations>
+    <open-tabs>
+        <layout order="0">Level1</layout>
+        <layout order="2">Menu</layout>
+        <event-sheet active="1" order="1">Level1</event-sheet>
+        <event-sheet order="3">Menu</event-sheet>
+    </open-tabs>
+    <properties>
+        <property expanded="1" name="About" />
+        <property expanded="1" name="Project settings" />
+        <property expanded="0" name="Window Size" />
+        <property expanded="1" name="Configuration Settings" />
+    </properties>
+    <families-expanded root="1">
+        <family expanded="1" name="fHuman" />
+        <family expanded="1" name="proyectiles" />
+    </families-expanded>
+    <folders-expanded>
+        <folder expanded="1" path="object-folder/" />
+        <folder expanded="1" path="object-folder/Funcionales/" />
+        <folder expanded="0" path="object-folder/UID/" />
+        <folder expanded="1" path="object-folder/UID/Sprite_fonts/" />
+        <folder expanded="1" path="object-folder/UID/Mobil/" />
+        <folder expanded="0" path="object-folder/Niveles/" />
+        <folder expanded="0" path="object-folder/Enemigos/" />
+        <folder expanded="0" path="object-folder/Enemigos/Objetos_varios/" />
+        <folder expanded="0" path="object-folder/Objetos_Varios/" />
+        <folder expanded="0" path="object-folder/Gusanito/" />
+        <folder expanded="1" path="object-folder/Disparos/" />
+        <folder expanded="0" path="object-folder/Habilidades/" />
+        <folder expanded="0" path="layout-folder/" />
+        <folder expanded="0" path="event-folder/" />
+        <folder expanded="0" path="file-folder/" />
+        <folder expanded="0" path="sound-folder/" />
+        <folder expanded="0" path="music-folder/" />
+        <folder expanded="0" path="file-folder/Icons/" />
+        <folder expanded="1" path="animation-folder/iza_touc/" />
+        <folder expanded="1" path="animation-folder/disparo/" />
+        <folder expanded="1" path="animation-folder/touc_disparo/" />
+        <folder expanded="1" path="animation-folder/Control_Combos/" />
+        <folder expanded="1" path="animation-folder/Fondo_Puntaje/" />
+        <folder expanded="1" path="animation-folder/Icono_Humano/" />
+        <folder expanded="1" path="animation-folder/limites_mapa/" />
+        <folder expanded="1" path="animation-folder/SOnidos/" />
+        <folder expanded="1" path="animation-folder/Tiempo/" />
+        <folder expanded="1" path="animation-folder/Sprite/" />
+        <folder expanded="1" path="animation-folder/Asustado/" />
+        <folder expanded="1" path="animation-folder/Human/" />
+        <folder expanded="1" path="animation-folder/mina/" />
+        <folder expanded="1" path="animation-folder/Oro/" />
+        <folder expanded="1" path="animation-folder/gusanito/" />
+        <folder expanded="1" path="animation-folder/gusanito_cuerpo/" />
+        <folder expanded="1" path="animation-folder/acido/" />
+        <folder expanded="1" path="animation-folder/rifle/" />
+        <folder expanded="1" path="animation-folder/MusicaOnOFF/" />
+    </folders-expanded>
+</c2uistate>
